@@ -1,10 +1,10 @@
-# DBM-Db2: sample scripts
-This repository contains sample scripts for use cases involving DBM-Db2 plug-in for Zowe CLI.
+# DBM-Db2: Sample Scripts
+This repository contains sample scripts for use cases that involve DBM-Db2 plug-in for Zowe CLI.
 
-## Response format JSON
+## Response Format JSON
 Use the `--rfj` parameter to enable JSON output during command execution.
 
-Typical output looks like:
+The following example shows the typical output of the command execution with JSON output enabled:
 ```json
 {
   "success": false,
@@ -26,10 +26,9 @@ Typical output looks like:
 }
 ```
 
-The `data` property is populated with additional information so that you don't need to parse the `message` to retrieve
-it.
+The `data` property contains additional information, so that you do not need to parse the message to retrieve it.
 
-The `data.files` property can contain the following properties based on the output files available for a command 
+The `data.files` property may contain the following properties based on the output files available for a command 
 executed:
 - ddlFile
 - summaryFile
@@ -39,12 +38,12 @@ executed:
 - migrateScript
 - errorFile
 
-The `data.attributes` property can contain the following properties:
+The `data.attributes` property may contain the following properties:
 - restartToken - Available for `execute` commands that failed.
-- hasObjectChanges - Available for `compare ddl` command. `true` when there are 0 creates, alters and drops - otherwise 
-`false`.
+- hasObjectChanges - Available for the `compare ddl` command. `false` when there are 0 creates, alters, and drops - 
+otherwise `true`.
 
-The `data` structure is persistent across commands, and if there is no data for a field - it will be left empty:
+The `data` structure is persistent across commands. If there is no data, the field remains empty:
 ```
 ...
 "files": {},
@@ -53,8 +52,7 @@ The `data` structure is persistent across commands, and if there is no data for 
 
 
 ### Processing in Python
-1. Consider `data`, `files` and `attributes` levels are always there (persistent structure), so there is no need to
-verify them not missing.
+1. JSON output always includes `data`, `files`, and `attributes` levels, so no verification is required.
 
 2. Parse JSON response and get files dictionary:
     ```python
@@ -67,8 +65,8 @@ verify them not missing.
     files.get('errorFile') # -> string relative path | None
     ```
 
-For more details about processing JSON response in python, see [Python samples].
+For more information about processing JSON response in python, see [Python samples].
 
 
 
-[Python samples]: samples/python/schema_promotion.py
+[Python samples]: samples/python/
