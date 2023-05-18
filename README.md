@@ -52,6 +52,9 @@ The `data` structure is persistent across commands. If there is no data, the fie
 
 
 ### Processing in Python
+
+Requirements: Python >=3.11.0
+
 1. JSON output always includes `data`, `files`, and `attributes` levels, so no verification is required.
 
 2. Parse JSON response and get files dictionary:
