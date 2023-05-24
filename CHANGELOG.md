@@ -10,6 +10,38 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+## [1.26.0] - 2023-05-24
+
+### Added
+
+- Data for the `--response-format-json | --rfj` output.
+  - The `data` property contains additional information, so that you do not need to parse the message to retrieve it.
+  - The `data.files` property may contain the following properties based on the output files available for a command executed:
+    - ddlFile
+    - summaryFile
+    - impactFile
+    - compareScript
+    - recoveryScript
+    - migrateScript
+    - errorFile
+  - The `data.attributes` property may contain the following properties:
+    - restartToken - Available for `execute` commands that failed.
+    - hasObjectChanges - Available for the `compare ddl` command. `false` when there are 0 creates, alters, and drops - otherwise `true`.
+  - The data structure is persistent across commands. If there is no data, the field remains empty:
+    ```
+    ...
+    "data": {
+      "files": {},
+      "attributes": {}
+    },
+    ```
+
+### Fixed
+
+- `--rfj` parameter not supported when provided without a value
+
+
+
 ## [1.25.0] - 2023-02-10
 
 ### Added
@@ -33,7 +65,7 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 - Error file now reports all steps.
   - Steps that are skipped due to the failure of a preceding step contain a warning message:\
-        `[WARNING] No content received.`
+    `[WARNING] No content received.`
 
 
 - Dependency versions updated and locked per NPM best practices:
@@ -51,7 +83,7 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 ### Changed
 
 - Updated the warning message on status-token mismatch as follows:\
-`[Warning] Unable to process the DBM Data Service REST API status-token. Update dbm-db2 plugin to the matching major version of DBM Data Service.`
+  `[Warning] Unable to process the DBM Data Service REST API status-token. Update dbm-db2 plugin to the matching major version of DBM Data Service.`
 
 
 
