@@ -1,6 +1,6 @@
 """
 Copyright (c) 2023 Broadcom. All rights reserved. The term
-“Broadcom” refers to Broadcom Inc. and/or its subsidiaries.
+"Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 This software and all information contained therein is confidential and proprietary and
 shall not be duplicated, used, disclosed or disseminated in any way without the express
@@ -8,7 +8,7 @@ written permission of Broadcom. All authorized reproductions must be marked with
     language.
 
 TO THE EXTENT PERMITTED BY APPLICABLE LAW, BROADCOM PROVIDES THIS
-SOFTWARE “AS IS” WITHOUT WARRANTY OF ANY KIND, INCLUDING WITHOUT
+SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, INCLUDING WITHOUT
 LIMITATION, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
 PARTICULAR PURPOSE OR NONINFRINGEMENT. IN NO EVENT WILL BROADCOM BE
 LIABLE TO THE END USER OR ANY THIRD PARTY FOR ANY LOSS OR DAMAGE, DIRECT OR
@@ -24,9 +24,9 @@ import subprocess
 
 class Zowe:
     """
-    Wrapper class to execute provided Zowe CLI commands and return JSON response as a dictionary\n
-    - automatically adds `zowe {command}` prefix
-    - automatically adds `--rfj` option
+    Wrapper class to execute provided Zowe CLI commands and return JSON response as a dictionary:\n
+    - Automatically adds the `zowe {command}` prefix.
+    - Automatically adds the `--rfj` option.
     """
 
     @staticmethod

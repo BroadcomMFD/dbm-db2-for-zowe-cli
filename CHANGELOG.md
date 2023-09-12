@@ -10,12 +10,64 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+## [1.27.0] - 2023-09-12
+
+This release includes minor security improvements. Update Recommended.
+
+### Added
+
+- The following parameters added for each command:
+  - environment-list
+  - job-cards
+  - overwrite-output-files
+  - protocol
+  - work-dataset-prefix
+
+
+- The `termination-character` parameter added for the following commands:
+  - compare ddl
+  - deploy ddl
+  - generate ddl
+  - prepare migration
+
+
+- `authid` and `sqlid` parameters added for the following commands:
+  - check ddl
+  - compare ddl
+  - deploy ddl
+  - generate ddl
+  - prepare migration
+
+### Changed
+
+- DBM-Db2 profile is no longer required for execution.
+
+
+- Removed `environmentList` property with local value from the error file.\
+  It still contains the `environment` property which reflects the actual value that is used during execution.
+
+
+- Renamed property `dbmProfileParameters` -> `options`.
+
+
+- Output file paths hardening to ensure writing in the end of execution:
+  - Switched to using forward slash only during reporting.
+  - Added validation that slash is not used on Unix-like systems.
+  - Added validation of read/write access before execution.
+
+### Fixed
+
+- Password value displayed in `arguments` section of an error file upon provided as CLI parameter.
+
+
+
 ## [1.26.0] - 2023-05-24
 
 ### Added
 
 - Data for the `--response-format-json | --rfj` output.
   - The `data` property contains additional information, so that you do not need to parse the message to retrieve it.
+    </br></br>
   - The `data.files` property may contain the following properties based on the output files available for a command executed:
     - ddlFile
     - summaryFile
@@ -24,9 +76,11 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
     - recoveryScript
     - migrateScript
     - errorFile
+      </br></br>
   - The `data.attributes` property may contain the following properties:
     - restartToken - Available for `execute` commands that failed.
     - hasObjectChanges - Available for the `compare ddl` command. `false` when there are 0 creates, alters, and drops - otherwise `true`.
+      </br></br>
   - The data structure is persistent across commands. If there is no data, the field remains empty:
     ```
     ...
@@ -149,6 +203,8 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+[1.27.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.27.0
+[1.26.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.26.0
 [1.25.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.25.0
 [1.24.2]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.24.2
 [1.24.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.24.0
