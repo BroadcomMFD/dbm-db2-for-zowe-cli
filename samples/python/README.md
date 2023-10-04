@@ -1,6 +1,6 @@
 # DBM-Db2: Python Sample
-This folder contains the sample script that explains how to use the DBM-Db2 Plug-in with Python. The sample comprises of
-the following assets:
+This folder contains the sample script that explains how to use the DBM for Db2 Plug-in for Zowe CLI with Python. The
+sample comprises of the following assets:
 - Schema promotion script
 - Requirements file
 - Work files
@@ -13,7 +13,14 @@ Compares schema changes to a target Db2 subsystem. Promotes changes if they comp
 
 ## Prerequisites
 - RC/Migrator and RC/Compare Version 20.0 (configured, current on maintenance, and running)
-- DBM Data Service (configured and running)
+
+
+- DBM Data Service (configured and running)\
+    This task assumes that you have completed the post-installation configuration tasks for the Batch Processor, the DBM
+    Data Service, the Xmanager, Xnet, and RC/Migrator. DBM Data Service customization includes customizing the DevOps
+    templates.
+
+
 - Python (>=3.11.0)
 - Zowe CLI V2
 - DBM-Db2 Plug-in for Zowe CLI (>=1.26.0)
