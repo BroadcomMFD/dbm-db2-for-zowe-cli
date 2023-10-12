@@ -10,9 +10,21 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+## [1.27.1] - 2023-10-12
+
+This release includes minor security improvements. Update recommended.
+
+### Fixed
+
+- Error file containing non-printable YAML characters.
+- `--target-db2` and `--source-db2` parameters not supporting data sharing group names.
+- `--match-set-file` format description having outdated length specification limits.
+
+
+
 ## [1.27.0] - 2023-09-12
 
-This release includes minor security improvements. Update Recommended.
+This release includes minor security improvements. Update recommended.
 
 ### Added
 
@@ -203,6 +215,7 @@ This release includes minor security improvements. Update Recommended.
 
 
 
+[1.27.1]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.27.1
 [1.27.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.27.0
 [1.26.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.26.0
 [1.25.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.25.0
