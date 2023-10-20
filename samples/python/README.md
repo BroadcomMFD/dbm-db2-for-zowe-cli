@@ -2,9 +2,8 @@
 This folder contains the sample script that explains how to use the DBM for Db2 Plug-in for Zowe CLI with Python. The
 sample comprises of the following assets:
 - Schema promotion script
-- Requirements file
-- Work files
 - Python classes
+- Work files
 
 
 ## Scenario
@@ -67,8 +66,9 @@ The sample script compares the DDL to a target Db2 subsystem and verifies the JS
 were identified. If the DDL compare was successful, you can promote the schema. If the DDL compare fails, the script
 prints JCL job details from the error file.
 
-An impact report is checked for DROP statements and any new tables that violate the schema definition in the group
-variables file. These checks represent site specific **rules** that must be followed before DDL changes are promoted.
+An impact report is checked for DROP statements and any new tables that violate the schema definition. These checks use
+simple JMESPath queries to filter and compare JSON document fields, and serve as site-specific **rules** that must be
+adhered to prior to promoting DDL changes.
 
 When all checks are passed, an update script is executed and schema changes are implemented on a target Db2 subsystem. A
 recovery file is created. We highly recommend that you save this file before the next execution, or use a dynamic file

@@ -20,7 +20,10 @@ EXPRESSLY ADVISED OF SUCH LOSS OR DAMAGE.
 import json
 import os
 from typing import Tuple, Any, Literal
+
+import jmespath
 import yaml
+
 from classes.zowe import Zowe
 
 
@@ -62,6 +65,9 @@ Note: To provide an overview of how validation works, the input DDL file (files/
 
 [Warning] Step #5 creates two tables defined in the input DDL file.
 """
+
+
+nl = '\n'  # newline character
 
 
 def get_files_dir() -> str:
@@ -162,15 +168,14 @@ def check_rules(output_files: dict, schema: str) -> None:
     content = read_output_file(output_files, 'impactFile', 'json')
 
     # check no DROPs
-    assert content.get('strategyOperationsStatisticsSummary').get('totals').get('drops') == 0, 'Drops detected.'
+    assert jmespath.search('strategyOperationsStatisticsSummary.totals.drops', content) == 0, 'Drops detected.'
 
     # check tables schema
-    for table in content.get('strategyObjectListsDetail').get('tables', []):
-        operations = table.get('operations')
-        creator = table.get('creator')
-
-        if len(operations) == 1 and operations[0] == 'create':
-            assert creator == schema, f'Table {creator}.{table.get("name")} schema is not "{schema}".'
+    tables = jmespath.search(
+        f"strategyObjectListsDetail.tables[?join('', operations) == 'create'] | [?creator != '{schema}']",
+        content
+    )
+    assert len(tables) == 0, f"New tables have forbidden schema definitions:\n{nl.join(str(t) for t in tables)}"
 
 
 def execute_compare_script(output_files: dict) -> dict:
