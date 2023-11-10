@@ -1,0 +1,129 @@
+# Copyright (c) 2023 Broadcom. All rights reserved. The term
+# "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+#
+# This software and all information contained therein is confidential
+# and proprietary and shall not be duplicated, used, disclosed or
+# disseminated in any way without the express written permission of
+# Broadcom. All authorized reproductions must be marked with this
+# language.
+#
+# TO THE EXTENT PERMITTED BY APPLICABLE LAW, BROADCOM PROVIDES THIS
+# SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, INCLUDING WITHOUT
+# LIMITATION, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+# PARTICULAR PURPOSE OR NONINFRINGEMENT. IN NO EVENT WILL BROADCOM BE
+# LIABLE TO THE END USER OR ANY THIRD PARTY FOR ANY LOSS OR DAMAGE,
+# DIRECT OR INDIRECT, FROM THE USE OF THIS MATERIAL, INCLUDING WITHOUT
+# LIMITATION, LOST PROFITS, BUSINESS INTERRUPTION, GOODWILL, OR LOST
+# DATA, EVEN IF BROADCOM IS EXPRESSLY ADVISED OF SUCH LOSS OR DAMAGE.
+  
+  
+# Compares schema changes to a target Db2 subsystem. Promotes changes if they comply with site requirements (rules).
+#
+# Prerequisites: Python >=3.11.0
+#
+# Usage:
+# 1. Install required Python packages (requirements.txt).
+# 2. Install required Ansible collections (requirements.yml).
+#
+# 3. Configure sample inventory and playbook:
+#   a. Configure group variable `dev_table_schema` (inventory/group_vars/dev.yml).
+#       This value is used to verify that new tables conform to your site standards.
+#   b. Specify connection details in host variables (inventory/host_vars/instance001.yml).
+#   c. Replace the `db2_subsystem` value with the target Db2 subsystem of your choice in this playbook.
+#
+# 4. Issue command: cd samples/ansible
+# 5. Issue command: ansible-playbook schema_promotion.yml -i inventory/dev.yml
+
+
+- name: Promote DDL
+  hosts: dev
+  collections:
+    - broadcom.dbm_db2
+  gather_facts: no
+  
+  #  Apply common parameter values for all subsequent DBM-Db2 actions.
+  module_defaults:
+    group/broadcom.dbm_db2.all:
+      error_file: files/error.log
+  
+  
+  tasks:
+    # Compare objects that are defined in a DDL file to objects that are defined on a Db2 subsystem,
+    # and generate an update script to implement the necessary changes.
+    - name: Compare DDL
+      block:
+        - name: Compare DDL
+          compare_ddl:
+            local_input_ddl_filename: files/ddl.sql
+            target_db2: db2_subsystem
+            output_compare_script: files/compare.txt
+            output_summary_file: files/summary.txt
+            output_impact_file: files/impact.json            
+          register: command_result
+          no_log: True
+        
+      # Display job details from an error file on a failure.
+      rescue:
+        - name: Error processing
+          include_tasks: tasks/error_processing.yml
+      
+    # Verify DDL changes are identified.
+    - name: Exit on no object changes or skip
+      delegate_to: localhost
+      fail:
+        msg: "No object changes identified."
+      when: command_result.attributes.has_object_changes == false
+      
+    # Prepare for rules validation.
+    - name: Read impact file
+      delegate_to: localhost
+      changed_when: false
+      shell: cat {{ command_result.files.impact_file }}
+      register: read_result
+      
+    - name: Parse impact file
+      delegate_to: localhost
+      set_fact:
+        impact_file_content: "{{ read_result.stdout | from_json }}"
+    
+    # Rule #1: Verify changes don't contain DROP statements.
+    - name: Exit on object drops or skip
+      delegate_to: localhost
+      fail:
+        msg: "Drops detected."
+      when: impact_file_content.strategyOperationsStatisticsSummary.totals.drops != 0
+      
+    # Rule #2: Verify new tables use a specific schema (DEV).
+    - name: Get violating tables
+      delegate_to: localhost
+      set_fact:
+        violating_tables: "{{ impact_file_content | json_query(jmesquery) }}"
+      vars:
+        jmesquery: strategyObjectListsDetail.tables[?join('', operations) == 'create'] | [?creator != '{{ dev_table_schema }}']
+        
+    - name: Print violating tables
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ violating_tables if (violating_tables is iterable and (violating_tables | length > 0)) else [] }}"
+    
+    - name: Exit on table schema violation or skip
+      delegate_to: localhost
+      fail:
+        msg: "New tables have forbidden schema definitions."
+      when: violating_tables is iterable and (violating_tables | length > 0)
+      
+    # Execute the update script that was generated during comparison,
+    # and implement the Db2 object changes.
+    - name: Implement object changes
+      block:
+        - name: Implement object changes
+          execute_compare_script:
+            local_input_compare_script_filename: "{{ command_result.files.compare_script }}"
+            output_recovery_script: files/recovery.txt
+          register: command_result
+          no_log: True
+          
+      # Display job details from an error file on a failure.
+      rescue:
+        - name: Error processing
+          include_tasks: tasks/error_processing.yml

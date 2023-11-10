@@ -1,0 +1,7 @@
+# Ansible requirements.
+# Usage: ansible-galaxy collection install -r requirements.yml
+
+collections:
+  - name: broadcom.dbm_db2
+    version: ">=1.27.0"
+    source: https://galaxy.ansible.com

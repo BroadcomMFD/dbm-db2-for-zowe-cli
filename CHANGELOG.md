@@ -12,7 +12,7 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 ## [1.27.1] - 2023-10-12
 
-This release includes minor security improvements. Update recommended.
+This release includes minor security improvements. Update is recommended.
 
 ### Fixed
 
@@ -24,7 +24,7 @@ This release includes minor security improvements. Update recommended.
 
 ## [1.27.0] - 2023-09-12
 
-This release includes minor security improvements. Update recommended.
+This release includes minor security improvements. Update is recommended.
 
 ### Added
 

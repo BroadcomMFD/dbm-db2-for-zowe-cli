@@ -1,0 +1,5 @@
+# Python requirements.
+# Usage: pip install -r requirements.txt
+
+ansible==8.2.0
+jmespath==1.0.1

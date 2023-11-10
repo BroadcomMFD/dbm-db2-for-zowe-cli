@@ -1,0 +1,53 @@
+# Copyright (c) 2023 Broadcom. All rights reserved. The term
+# "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+#
+# This software and all information contained therein is confidential
+# and proprietary and shall not be duplicated, used, disclosed or
+# disseminated in any way without the express written permission of
+# Broadcom. All authorized reproductions must be marked with this
+# language.
+#
+# TO THE EXTENT PERMITTED BY APPLICABLE LAW, BROADCOM PROVIDES THIS
+# SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, INCLUDING WITHOUT
+# LIMITATION, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+# PARTICULAR PURPOSE OR NONINFRINGEMENT. IN NO EVENT WILL BROADCOM BE
+# LIABLE TO THE END USER OR ANY THIRD PARTY FOR ANY LOSS OR DAMAGE,
+# DIRECT OR INDIRECT, FROM THE USE OF THIS MATERIAL, INCLUDING WITHOUT
+# LIMITATION, LOST PROFITS, BUSINESS INTERRUPTION, GOODWILL, OR LOST
+# DATA, EVEN IF BROADCOM IS EXPRESSLY ADVISED OF SUCH LOSS OR DAMAGE.
+
+
+# Reusable tasks for error processing:
+# A. Process error file if available:
+# - Read error file.
+# - Parse YAML content.
+# - Print failed job information.
+# B. Just exit.
+
+
+- name: Error file processing
+  when: command_result.files.error_file is defined
+  block:
+  - name: Read error file
+    delegate_to: localhost
+    changed_when: false
+    shell: cat {{ command_result.files.error_file }}
+    register: read_result
+  
+  - name: Parse YAML content
+    delegate_to: localhost
+    set_fact:
+      error_file_content: "{{ read_result.stdout | from_yaml }}"
+  
+  - name: Print failed job information
+    delegate_to: localhost
+    fail:
+      msg: "{{ error_file_content.jobName }}({{ error_file_content.jobId}}) - {{ error_file_content.jobRetCode }}"
+    when: True
+
+# Error itself is displayed in DBM-Db2 task.
+- name: Exit on no error file
+  when: command_result.files.error_file is not defined
+  delegate_to: localhost
+  fail:
+    msg:

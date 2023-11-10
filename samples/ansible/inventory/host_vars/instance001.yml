@@ -1,0 +1,47 @@
+# Copyright (c) 2023 Broadcom. All rights reserved. The term
+# "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+#
+# This software and all information contained therein is confidential
+# and proprietary and shall not be duplicated, used, disclosed or
+# disseminated in any way without the express written permission of
+# Broadcom. All authorized reproductions must be marked with this
+# language.
+#
+# TO THE EXTENT PERMITTED BY APPLICABLE LAW, BROADCOM PROVIDES THIS
+# SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, INCLUDING WITHOUT
+# LIMITATION, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+# PARTICULAR PURPOSE OR NONINFRINGEMENT. IN NO EVENT WILL BROADCOM BE
+# LIABLE TO THE END USER OR ANY THIRD PARTY FOR ANY LOSS OR DAMAGE,
+# DIRECT OR INDIRECT, FROM THE USE OF THIS MATERIAL, INCLUDING WITHOUT
+# LIMITATION, LOST PROFITS, BUSINESS INTERRUPTION, GOODWILL, OR LOST
+# DATA, EVEN IF BROADCOM IS EXPRESSLY ADVISED OF SUCH LOSS OR DAMAGE.
+
+
+# Variables used for the `instance001` host:
+# - `ansible_host` is the DBM DS instance hostname.
+# - `ansible_user` is the z/OS username to use for authentication.
+# - `ansible_password` is the z/OS password to use for authentication.
+#   [!] Do not commit the password to version control system.
+#     To provide the password, use the Ansible vault storage, the command line interface, or set an environment variable
+#     for automation.
+# - `broadcom.dbm_db2` object represents DBM-Db2 Ansible collection parameters.
+#   For more information about parameters, see the DBM-Db2 Ansible collection syntax at https://broadcommfd.github.io/broadcom-ansible-collections/generated/broadcom/dbm_db2/index.html.
+
+
+ansible_host: dbm_ds_hostname
+ansible_user: zos_user
+ansible_password: zos_password
+  
+  
+broadcom:
+  dbm_db2:
+    port: dbm_ds_port
+    protocol: https
+    environment_list: env1@host1:port1,env2@host2:port2
+    job_cards:
+      - "//DB2DVOPS JOB CLASS=A,"
+      - "//         MSGCLASS=X"
+    work_dataset_prefix: ${user}.dbmdb2
+    authid: ${user}
+    sqlid: ${user}
+    overwrite_output_files: True
