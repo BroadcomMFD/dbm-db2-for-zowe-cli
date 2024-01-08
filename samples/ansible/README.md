@@ -26,7 +26,7 @@ Compares schema changes to a target Db2 subsystem. Promotes changes if they comp
 
 
 ## Usage
-1. Install [required Python packages](requirements.txt).
+1. Install [required Python packages](requirements.txt) with [constraints](constraints.txt).
 2. Install [required Ansible collections](requirements.yml).
 
 3. Configure the sample inventory and playbook:

@@ -1,4 +1,4 @@
--- Copyright (c) 2023 Broadcom. All rights reserved. The term
+-- Copyright (c) 2024 Broadcom. All rights reserved. The term
 -- "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 -- 
 -- This software and all information contained therein is confidential
@@ -22,7 +22,7 @@ CREATE  TABLE DEV.DBMTB
         , COL2 CHAR ( 2 )                                                       
         , COL3 CHAR ( 3 )                                                       
         )                                                                       
-        IN DBMDB.DBMTS                                                          
+        IN DBMDB.DEVTS
    CCSID         EBCDIC                                                         
    ;
 
@@ -31,6 +31,6 @@ CREATE  TABLE DEV2.DBMTB2
        , COL2 CHAR ( 2 )
        , COL3 CHAR ( 3 )
        )
-       IN DBMDB.DBMTS                                                          
+       IN DBMDB.DEVTS
    CCSID         EBCDIC
 ;

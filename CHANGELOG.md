@@ -10,6 +10,16 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+## [1.27.2] - 2024-01-08
+
+This release includes minor security improvements. Update is recommended.
+
+### Fixed
+
+- Vulnerability CVE-2023-49083
+
+
+
 ## [1.27.1] - 2023-10-12
 
 This release includes minor security improvements. Update is recommended.
