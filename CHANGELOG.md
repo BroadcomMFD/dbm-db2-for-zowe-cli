@@ -10,13 +10,60 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
-## [1.27.2] - 2024-01-08
+## [1.28.0] - 2024-02-14
 
 This release includes minor security improvements. Update is recommended.
 
-### Fixed
+### Added
 
-- Vulnerability CVE-2023-49083
+- The secondary profile `dbm-db2-options` with the following parameters:
+  - authid
+  - changeSet
+  - changeSetValues
+  - deleteWorkDatasets
+  - description
+  - id
+  - jobCards
+  - matchSet
+  - matchSetValues
+  - modification
+  - overwriteOutputFiles
+  - ruleSet
+  - sqlid
+  - sourceDb2
+  - targetDb2
+  - terminationCharacter
+  - type
+  - verify
+  - workDatasetPrefix
+  
+- The `dbm-db2-options-profile` CLI parameter for all commands.
+
+### Changed
+
+- CLI options are grouped in the following order:
+  - positionals
+  - required
+  - options
+  - profile options
+  - dbm-db2 connection options
+  - base connection options
+  - global options
+  - examples
+
+- The `options` section in the error file now supports new parameters:
+  - changeSet
+  - changeSetValues
+  - description
+  - id
+  - matchSet
+  - matchSetValues
+  - modification
+  - ruleSet
+  - type
+  - verify
+
+- The title of the `dbm-db2-profile` changes to "DBM-Db2 Connection Profile".
 
 
 
@@ -89,7 +136,7 @@ This release includes minor security improvements. Update is recommended.
 
 - Data for the `--response-format-json | --rfj` output.
   - The `data` property contains additional information, so that you do not need to parse the message to retrieve it.
-    </br></br>
+  </br></br>
   - The `data.files` property may contain the following properties based on the output files available for a command executed:
     - ddlFile
     - summaryFile
@@ -98,11 +145,11 @@ This release includes minor security improvements. Update is recommended.
     - recoveryScript
     - migrateScript
     - errorFile
-      </br></br>
+  </br></br>
   - The `data.attributes` property may contain the following properties:
     - restartToken - Available for `execute` commands that failed.
     - hasObjectChanges - Available for the `compare ddl` command. `false` when there are 0 creates, alters, and drops - otherwise `true`.
-      </br></br>
+  </br></br>
   - The data structure is persistent across commands. If there is no data, the field remains empty:
     ```
     ...
@@ -225,6 +272,7 @@ This release includes minor security improvements. Update is recommended.
 
 
 
+[1.28.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.0
 [1.27.1]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.27.1
 [1.27.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.27.0
 [1.26.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.26.0
