@@ -10,6 +10,12 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+## [1.28.1] - 2024-02-19
+
+Architectural Runway.
+
+
+
 ## [1.28.0] - 2024-02-14
 
 This release includes minor security improvements. Update is recommended.
@@ -272,6 +278,7 @@ This release includes minor security improvements. Update is recommended.
 
 
 
+[1.28.1]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.1
 [1.28.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.0
 [1.27.1]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.27.1
 [1.27.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.27.0
