@@ -28,7 +28,9 @@ Compares schema changes to a target Db2 subsystem. Promotes changes if they comp
 
 
 ## Usage
-1. Install [required Python packages](requirements.txt).
+1. Install required Python packages:\
+    `pip install PyYAML==6.0 jmespath==1.0.1`
+
 2. Configure environment variables:
     - `subsystem`: Specify the target Db2 subsystem.
     - `schema`: Specify the schema name for new tables in your environment.\

@@ -1,6 +1,6 @@
 # Change Log
 
-This document lists changes made to the Ansible sample for DBM-Db2 plug-in for Zowe CLI.
+This document lists changes made to the Python sample for DBM-Db2 plug-in for Zowe CLI.
 
 The format of this changelog is based on [Keep a Changelog] and adheres to [Semantic Versioning].
 
@@ -10,7 +10,7 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
-## 1.0.2 - 2024-02-23
+## 1.0.3 - 2024-02-23
 
 ### Changed
 
@@ -18,30 +18,34 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
-## 1.0.1 - 2024-01-08
-
-This release includes minor security improvements. Update is recommended.
-
-### Security
-
-- Updated dependencies to resolve vulnerability CVE-2023-49083
-
-
-
-## 1.0.0 - 2023-11-10
+## 1.0.2 - 2023-10-20
 
 ### Added
 
-- DBM-Db2 Ansible collection usage sample.\
+- JMESPath support for parsing impact file.
+
+
+
+## 1.0.1 - 2023-10-04
+
+### Changed
+
+- Readme changed to contain more details about DBM Data Service prerequisite.
+
+
+
+## 1.0.0 - 2023-05-18
+
+### Added
+
+- Python usage sample for DBM-Db2 plug-in.\
   \
   Scenario: Compares schema changes to a target Db2 subsystem. Promotes changes if they comply with site requirements
 (rules).\
   \
   The sample comprises of the following assets:
-  - Ansible playbook
-  - Ansible configuration
-  - Reusable tasks
-  - Inventory
+  - Schema promotion script
+  - Python classes
   - Work files
 
 

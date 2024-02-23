@@ -11,8 +11,6 @@ Solution for Db2 TechDocs documentation.
 
 For more information about the use of the DBM-Db2 Plug-in, see [README] in npm.
 
-For more information about Third-Party Software Agreements, see attribution [NOTICE]s file.
-
 
 [CHANGELOG]: CHANGELOG.md
 [Issues]: https://github.com/BroadcomMFD/dbm-db2-for-zowe-cli/issues
@@ -21,4 +19,3 @@ For more information about Third-Party Software Agreements, see attribution [NOT
 [Wiki]: https://github.com/BroadcomMFD/dbm-db2-for-zowe-cli/wiki
 [Integrating]: https://techdocs.broadcom.com/us/en/ca-mainframe-software/database-management/ca-database-management-solutions-for-db2-for-z-os/20/integrating.html
 [README]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli
-[NOTICE]: NOTICE
