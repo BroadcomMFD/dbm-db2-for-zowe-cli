@@ -10,6 +10,12 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+## [1.28.3] - 2024-05-27
+
+Architectural Runway.
+
+
+
 ## [1.28.2] - 2024-03-01
 
 ### Fixed
@@ -202,7 +208,7 @@ This release includes minor security improvements. Update is recommended.
 
 - Error file now reports all steps.
   - Steps that are skipped due to the failure of a preceding step contain a warning message:\
-    `[WARNING] No content received.`
+        `[WARNING] No content received.`
 
 
 - Dependency versions updated and locked per NPM best practices:
@@ -220,7 +226,7 @@ This release includes minor security improvements. Update is recommended.
 ### Changed
 
 - Updated the warning message on status-token mismatch as follows:\
-  `[Warning] Unable to process the DBM Data Service REST API status-token. Update dbm-db2 plugin to the matching major version of DBM Data Service.`
+`[Warning] Unable to process the DBM Data Service REST API status-token. Update dbm-db2 plugin to the matching major version of DBM Data Service.`
 
 
 
@@ -286,6 +292,7 @@ This release includes minor security improvements. Update is recommended.
 
 
 
+[1.28.3]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.3
 [1.28.2]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.2
 [1.28.1]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.1
 [1.28.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.0
