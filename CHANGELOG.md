@@ -10,6 +10,17 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+## [1.29.0] - 2024-07-11
+
+This release includes minor security improvements. Update is recommended.
+
+### Added
+
+- API Mediation Layer gateway support for communication with the DBM Data Service.
+- CLI and connection profile parameter `basePath` for routing REST requests to a specific DBM Data Service instance.
+- CLI parameters `token-type`, `token-value`, `cert-file`, and `cert-key-file` for API Mediation Layer authentication.
+
+
 ## [1.28.3] - 2024-05-27
 
 Architectural Runway.
@@ -292,6 +303,7 @@ This release includes minor security improvements. Update is recommended.
 
 
 
+[1.29.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.29.0
 [1.28.3]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.3
 [1.28.2]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.2
 [1.28.1]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.1
