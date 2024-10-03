@@ -10,6 +10,23 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+## [3.0.0] - 2024-09-25
+
+### Added
+
+- Zowe CLI V3 support.
+
+### Changed
+
+- The `changeSetValues` parameter in the options profile now contains a default set of change specifications for the
+table DDL and the dependent objects scenario.
+
+### Removed
+
+- Zowe CLI V1 support.
+
+
+
 ## [1.29.0] - 2024-07-11
 
 This release includes minor security improvements. Update is recommended.
@@ -303,6 +320,7 @@ This release includes minor security improvements. Update is recommended.
 
 
 
+[3.0.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/3.0.0
 [1.29.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.29.0
 [1.28.3]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.3
 [1.28.2]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.2
