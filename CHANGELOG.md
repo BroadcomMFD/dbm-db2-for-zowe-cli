@@ -10,6 +10,17 @@ The format of this changelog is based on [Keep a Changelog] and adheres to [Sema
 
 
 
+## [3.0.1] - 2025-04-28
+
+Architectural Runway.
+
+### Added
+
+- Support for RMATMDG6 and RMATMDG5 templates for compare and deploy endpoints accordingly that apply global changes to
+all objects in a DDL.
+
+
+
 ## [3.0.0] - 2024-09-25
 
 ### Added
@@ -320,6 +331,7 @@ This release includes minor security improvements. Update is recommended.
 
 
 
+[3.0.1]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/3.0.1
 [3.0.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/3.0.0
 [1.29.0]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.29.0
 [1.28.3]: https://www.npmjs.com/package/@broadcom/dbm-db2-for-zowe-cli/v/1.28.3

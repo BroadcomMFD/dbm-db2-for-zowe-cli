@@ -46,8 +46,7 @@ Compares schema changes to a target Db2 subsystem. Promotes changes if they comp
 
 ## Workflow
 
-> **_NOTE:_**\
-\
+> [!NOTE]\
 To protect you from undesired changes and creating an object on your first execution, one of the tables in the input DDL
 file ([files/ddl.sql](files/ddl.sql)) contains a “DEV2” schema that is bound to fail validation. When you understand how
 rules can protect you, replace “DEV2” with “DEV” and proceed with updating your Db2 subsystem.
